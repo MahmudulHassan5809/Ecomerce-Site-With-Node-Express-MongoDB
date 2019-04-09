@@ -1,0 +1,53 @@
+<% layout('layout') %>
+
+<div class="container">
+	<% if (message.length > 0) { -%>
+			<div class="alert alert-warning alert-dismissable" role="alert">
+			   <button type="button" class="close" data-dismiss='alert' aria-label="Close">
+			   		<span aria-hidden="true">&times;</span>
+			   </button>
+			   <%= message %>
+			</div>
+		<% } else { -%>
+
+		<% } -%>
+	<div class="row">
+		<div class="col-md-4 col-sm-6 mt-4">
+			<img src="<%= user.profile.picture %>" class="rounded-circle img-responsive">
+			<br>
+			<br>
+
+			<p>Name : <%= user.profile.name %></p>
+			<p>Email : <%= user.email %></p>
+
+			<% if (user.address === "" || typeof user.address === 'undefined') { -%>
+				<p>Address : <span style="color: #c0392b;font-weight: bold;">You Have No Address</span></p>
+			<% } else { -%>
+				<p>Address : <%= user.address %></p>
+			<% } -%>
+
+			<a href="/users/edit-profile" class="btn btn-primary btn-lg">Edit Profile</a>
+		</div>
+
+		<div class="col-md-6 mt-4">
+			<h2 class="text-center">History</h2>
+			<table class="table table-inverse">
+				<thead>
+					<tr>
+						<th>Items Name</th>
+						<th>Paid</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% for (var i = 0; i < user.history.length; i++) { -%>
+						<tr>
+							<td><%= user.history[i].item.name %></td>
+							<td><%= user.history[i].paid %></td>
+						</tr>
+					<% } -%>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>

@@ -1,0 +1,43 @@
+<% layout('layout') %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 mx-auto mt-3 ">
+			<% if (message.length > 0) { -%>
+			<div class="alert alert-warning alert-dismissable" role="alert">
+			   <button type="button" class="close" data-dismiss='alert' aria-label="Close">
+			   		<span aria-hidden="true">&times;</span>
+			   </button>
+			   <%= message %>
+			</div>
+			<% } else { -%>
+
+			<% } -%>
+			<a href="/admin/add-category" class="float-left btn btn-info btn-sm mb-2">Add Category</a>
+			<table class="table table-bordered table-inverse table-hover">
+				<thead>
+					<tr>
+						<th>No</th>
+						<th>Category</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% for (var i = 0; i < categories.length; i++) { -%>
+						<tr>
+							<td><%= i + 1 %></td>
+							<td><%= categories[i].name %></td>
+							<td>
+								<form style=" display: inline;" method="POST" action="/admin/delete/<%= categories[i]._id %>?_method=DELETE">
+								  <input type="hidden" name="_method" value="DELETE">
+								  <button class="btn btn-danger" type="submit"><i class="fas fa-trash-restore-alt"></i></button>
+							  </form>
+							  <a class="btn btn-info" href="/admin/edit-category/<%= categories[i]._id %>"><i class="fas fa-edit"></i></a>
+							</td>
+						</tr>
+					<% } -%>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

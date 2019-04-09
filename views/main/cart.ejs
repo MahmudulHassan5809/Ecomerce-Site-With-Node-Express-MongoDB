@@ -1,0 +1,81 @@
+<% layout('layout') %>
+
+<div class="container">
+	<div class="row">
+
+		<div class="col-md-6 mt-2">
+
+			<% if (message.length > 0) { -%>
+			<div class="alert alert-success alert-dismissable" role="alert">
+			   <button type="button" class="close" data-dismiss='alert' aria-label="Close">
+			   		<span aria-hidden="true">&times;</span>
+			   </button>
+			   <%= message %>
+			</div>
+			<% } else { -%>
+
+			<% } -%>
+
+			<% for (var i = 0; i < foundCart.items.length; i++) { -%>
+				<div class="list-group">
+					<span class="list-group-item">
+						<div class="row">
+							<div class="col-md-3">
+								<span>
+									<img width="100px" src="<%= foundCart.items[i].item.image %>" class="product-image" alt="">
+								</span>
+							</div>
+							<div class="col-md-6">
+								<p class="list-group-item-heading">
+									<%= foundCart.items[i].item.name %>
+								</p>
+							</div>
+							<div class="col-md-3">
+								<p>
+									<%= foundCart.items[i].quantity %>
+								</p>
+								<p><%= foundCart.items[i].price %></p>
+								<form action="/remove" method="POST">
+									<input type="hidden" name="item" value="<%= foundCart.items[i]._id %>" >
+									<input type="hidden" name="price" value="<%= foundCart.items[i].price %>" >
+									<button type="submit" class="btn btn-danger btn-sm">Remove</button>
+								</form>
+							</div>
+						</div>
+					</span>
+				</div>
+			<% } -%>
+		</div>
+
+		<div class="col-md-3">
+
+		</div>
+
+		<div class="col-md-3">
+			<div class="list-group">
+				<span class="list-group-item">
+					<h4>Total: $<span><%= foundCart.total %></span></h4>
+					<div class="form-group">
+						<input type="hidden" value="<%= foundCart.total %>">
+						<form action="/payment" method="POST">
+							<input type="hidden" name="stripeMoney" value="<%= foundCart.total %>">
+						  <script
+						    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+						    data-key="pk_test_X7m5Qb4ecBdChEMbOaOPvUqA"
+						    data-amount="<%= foundCart.total * 100 %>"
+						    data-name="Amazon Clone"
+						    data-description="Thank For Shoping From Us"
+						    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+						    data-locale="auto">
+						  </script>
+						</form>
+					</div>
+				</span>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+

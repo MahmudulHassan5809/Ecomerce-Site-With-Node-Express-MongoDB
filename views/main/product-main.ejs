@@ -1,0 +1,52 @@
+<% layout('layout') %>
+
+<div class="jumbotron" id="navbar-gap">
+  <div class="container">
+    <h1 class="text-center">Find Your Favourite Product</h1>
+    <p class="text-center">Search Many Of Ecommerce's Products</p>
+    <div class="row">
+    	<div class="col-md-6 mx-auto">
+    		<div class="input-group col-md-12">
+    			<input type="text" placeholder="Search For Products" class="form-control input-lg" id="q" name="q">
+    			<button type="submit" class="ml-2 btn btn-success btn-lg"><i class="fas fa-search"></i></button>
+    		</div>
+    	</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+	<div class="row" id="search_result">
+		<% for (var i = 0; i < products.length; i++) { -%>
+			<div class="col-md-4 mt-3">
+
+				<a href="/product/<%= products[i]._id %>">
+					<figure class="figure">
+						  <img src='<%= products[i].image %>' class="figure-img img-fluid rounded">
+						  <figcaption class="figure-caption">
+						  	<h3><%= products[i].name %></h3>
+						  	<p><%= products[i].category.name %></p>
+						  	<p><%= products[i].price %></p>
+						  </figcaption>
+					</figure>
+				</a>
+
+			</div>
+		<% } -%>
+				<nav aria-label="Page navigation example" class="mx-auto">
+				  <ul class="pagination">
+				    <% for (var i = 1; i <= pages; i++) { -%>
+
+						<% if (i === 1) { -%>
+							<li class="page-item"><a class="page-link" href="/"><%= i %></a></li>
+						<% } else { -%>
+							<li class="page-item"><a class="page-link" href="/page/<%= i %>"><%= i %></a></li>
+						<% } -%>
+
+				    <% } -%>
+				  </ul>
+				</nav>
+	</div>
+</div>
+
+

@@ -1,0 +1,33 @@
+<% layout('layout') %>
+
+<div class="container">
+	<div class="row">
+	<div class="col-md-6 mx-auto">
+		<% if (error_message.length > 0) { -%>
+			<div class="alert alert-danger alert-dismissable" role="alert">
+			   <button type="button" class="close" data-dismiss='alert' aria-label="Close">
+			   		<span aria-hidden="true">&times;</span>
+			   </button>
+				<% for (var i = 0; i < error_message.length; i++) { -%>
+					<%= error_message[i] %>
+				<% } -%>
+			</div>
+		<% } -%>
+		<form action="/admin/edit-category/<%= category._id %>?_method=PUT" method="POST">
+			<input type="hidden" name="_method" value="PUT">
+			<h2>Edit Category</h2>
+
+			<fieldset class="form-group">
+					<label>Name</label>
+					<input type="text" value="<%= category.name %>" name="name" class="form-control" placeholder="Name">
+			</fieldset>
+
+
+			<fieldset class="form-group">
+					<button type="submit" class="btn btn-block btn-info">Update Category</button>
+			</fieldset>
+
+		</form>
+	</div>
+</div>
+</div>

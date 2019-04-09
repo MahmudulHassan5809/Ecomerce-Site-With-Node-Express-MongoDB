@@ -1,0 +1,27 @@
+<% layout('layout') %>
+
+<div class="container">
+	<% if (products.length === 0) { -%>
+	<h3>Search Not Found </h3>
+	<% } else { -%>
+		<h3>Results For <%= search %></h3>
+		<div class="row">
+			<% for (var i = 0; i < products.length; i++) { -%>
+				<div class="col-md-4 mt-3">
+
+					<a href="/product/<%= products[i]._id %>">
+						<figure class="figure">
+							  <img src='<%= products[i].image %>' class="figure-img img-fluid rounded">
+							  <figcaption class="figure-caption">
+							  	<h3><%= products[i].name %></h3>
+							  	<p><%= products[i].category.name %></p>
+							  	<p><%= products[i].price %></p>
+							  </figcaption>
+						</figure>
+					</a>
+
+				</div>
+			<% } -%>
+		</div>
+	<% } -%>
+</div>
