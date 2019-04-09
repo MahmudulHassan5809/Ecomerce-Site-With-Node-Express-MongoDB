@@ -2,14 +2,14 @@
 
 
 # Features
-  1.Admin Panel
-  2.Full Authentication System
-  3.Onine Stripe Payment System
-  4.Users History Panel
-  5.Profile Update
-  6.Users Shopping Cart System
-  7.Live Search Using Ajax
-  8.Many More
+  * Admin Panel
+  * Full Authentication System
+  * Onine Stripe Payment System
+  * Users History Panel
+  * Profile Update
+  * Users Shopping Cart System
+  * Live Search Using Ajax
+  * Many More
 
 
 
@@ -17,16 +17,16 @@
 ## Usage
 
    ### Database
-  For Database Connection Please Update database.js in config folder
-    if(process.env.NODE_ENV === 'production'){
-       module.exports = {
-          mongoURI: 'Your Mlab Uri',
-       }
-      }else{
-        module.exports = {
-          mongoURI : 'mongodb://localhost:27017/ecomm_dev'
+    For Database Connection Please Update database.js in config folder
+      if(process.env.NODE_ENV === 'production'){
+         module.exports = {
+            mongoURI: 'Your Mlab Uri',
+         }
+        }else{
+          module.exports = {
+            mongoURI : 'mongodb://localhost:27017/ecomm_dev'
+          }
         }
-      }
 
   ### Admin Setup
     Update create-admin route in admin.js in routes folder
